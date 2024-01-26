@@ -1,6 +1,5 @@
 <?php
 
-// config for Inupress/LaravelSettings
 return [
-
+    'table' => 'settings',
 ];
