@@ -8,19 +8,18 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create(config('settings.table'), function (Blueprint $table) {
+        Schema::create(config('settings.table', 'settings'), function (Blueprint $table) {
             $table->id();
 
-            $table->string('provider');
-            $table->string('package');
-            $table->string('group');
+            $table->string('namespace')->nullable();
             $table->string('key');
             $table->json('value')->nullable();
-            $table->boolean('locked')->default(false);
+
+            $table->string('status')->default('enabled');
 
             $table->timestamps();
 
-            $table->unique(['provider', 'package', 'group', 'key']);
+            $table->unique(['namespace', 'key']);
         });
     }
 };
