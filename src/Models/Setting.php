@@ -29,4 +29,16 @@ class Setting extends Model
 
         return json_decode($setting->getAttribute('value'));
     }
+
+    public static function set(string $property, $value = null)
+    {
+        $attributes = ['key' => $property];
+
+        if (str_contains($property, '::')) {
+            [$namespace, $key] = explode('::', $property);
+            $attributes = ['namespace' => $namespace, 'key' => $key];
+        }
+
+        return static::updateOrCreate($attributes, ['value' => json_encode($value)]);
+    }
 }
