@@ -4,9 +4,15 @@ namespace Inupress\LaravelSettings\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $namespace
+ * @property string $key
+ * @property mixed $value
+ */
 class Setting extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     public static function get(string $property)
     {
